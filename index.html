@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="qrcode.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="qrcode-container">
+        <div class="qr-header">
+            <h1>Logical Systems</h1>
+        </div>
+        <div class="qr-formgroup">
+            <div class="qr-inputgroup">
+                <label for="fullname">Full Name</label>
+                <input id="fullname" type="text" placeholder="John Davis">
+            </div>
+            <div class="qr-inputgroup">
+                <label for="phonenumber">Phone Number</label>
+                <input id="phonenumber" type="text" placeholder="+123 456 789 101">
+            </div>
+            <div class="qr-inputgroup">
+                <label for="department">Department</label>
+                <input id="department" type="text" placeholder="Web Developer">
+            </div>
+        </div>
+        <div class="qr-codebody">
+            <div id="qrbox">
+                <h1>QR</h1>
+            </div>
+        </div>
+        <a class="qr-download">Download</a>
+    </div>
+    <script>
+        let QRCodeBody = document.querySelector('.qr-codebody');
+        let fullName = document.getElementById('fullname');
+        let phoneNumber = document.getElementById('phonenumber');
+        let department = document.getElementById('department');
+        let fullInformation = ``;
+        fullName.addEventListener('keyup', () => {
+            createQR();
+        })
+        phoneNumber.addEventListener('keyup', () => {
+            createQR();
+        })
+        department.addEventListener('keyup', () => {
+            createQR();
+        })
+
+        function createQR() {
+            fullInformation = `
+            Full Name: ${fullName.value}
+            Phone Number: ${phoneNumber.value}
+            Department: ${department.value}
+            `;
+            document.getElementById('qrbox')?.remove();
+            let qrbox = document.createElement('div');
+            qrbox.id = 'qrbox';
+            QRCodeBody.append(qrbox);
+
+            new QRCode(qrbox, {
+                text: fullInformation,
+                width: 200,
+                height: 200,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H,
+            });
+        }
+    </script>
+</body>
+
+</html>

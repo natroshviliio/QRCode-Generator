@@ -84,12 +84,17 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
 }
 
-#qrbox h1 {
+.qr-codebody::after {
+    content: 'QR';
     font-family: 'Saira', sans-serif;
     font-size: 5rem;
     color: #aaa;
+    font-weight: bold;
+    position: absolute;
+    z-index: -1;
 }
 
 .qr-download {

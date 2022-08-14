@@ -20,6 +20,7 @@ html, body {
 
 .qrcode-container {
     width: 500px;
+    height: 620px;
     padding-bottom: 15px;
     background-color: rgb(233, 76, 76);
     position: relative;
@@ -99,6 +100,11 @@ html, body {
     margin-top: 10px;
     font-family: 'Saira', sans-serif;
     box-shadow: 3px 3px 5px rgba(27, 27, 27, .5);
+    display: none;
+}
+
+.d-block {
+    display: block;
 }
 
 .qr-download:hover {

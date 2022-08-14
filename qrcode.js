@@ -1013,7 +1013,7 @@ var QRCode;
 	var Drawing = useSVG
 		? svgDrawer
 		: !_isSupportCanvas()
-		? (function () {
+			? (function () {
 				var Drawing = function (el, htOption) {
 					this._el = el;
 					this._htOption = htOption;
@@ -1038,12 +1038,12 @@ var QRCode;
 						for (var col = 0; col < nCount; col++) {
 							aHTML.push(
 								'<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' +
-									nWidth +
-									'px;height:' +
-									nHeight +
-									'px;background-color:' +
-									(oQRCode.isDark(row, col) ? _htOption.colorDark : _htOption.colorLight) +
-									';"></td>',
+								nWidth +
+								'px;height:' +
+								nHeight +
+								'px;background-color:' +
+								(oQRCode.isDark(row, col) ? _htOption.colorDark : _htOption.colorLight) +
+								';"></td>',
 							);
 						}
 
@@ -1071,8 +1071,8 @@ var QRCode;
 				};
 
 				return Drawing;
-		  })()
-		: (function () {
+			})()
+			: (function () {
 				// Drawing in Canvas
 				function _onMakeImage() {
 					this._elImage.src = this._elCanvas.toDataURL('image/png');
@@ -1206,12 +1206,15 @@ var QRCode;
 						}
 					}
 
+					//ADDED BY ME - FOR DOWNLOAD LINK
 					let link = document.querySelector('.qr-download');
 					link.setAttribute('download', 'canv.png');
 					link.setAttribute(
 						'href',
 						this._elCanvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'),
 					);
+					link.classList.add('d-block')
+					//ADDED BY ME - FOR DOWNLOAD LINK
 
 					this._bIsPainted = true;
 				};
@@ -1255,7 +1258,7 @@ var QRCode;
 				};
 
 				return Drawing;
-		  })();
+			})();
 
 	/**
 	 * Get the type by string length

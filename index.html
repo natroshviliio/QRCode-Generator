@@ -26,8 +26,8 @@
                 <input id="phonenumber" type="text" placeholder="+123 456 789 101">
             </div>
             <div class="qr-inputgroup">
-                <label for="department">Department</label>
-                <input id="department" type="text" placeholder="Web Developer">
+                <label for="position">Position</label>
+                <input id="position" type="text" placeholder="Web Developer">
             </div>
         </div>
         <div class="qr-codebody">
@@ -41,7 +41,8 @@
         let QRCodeBody = document.querySelector('.qr-codebody');
         let fullName = document.getElementById('fullname');
         let phoneNumber = document.getElementById('phonenumber');
-        let department = document.getElementById('department');
+        let position = document.getElementById('position');
+        let qrdownbtn = document.querySelector('.qr-download');
         let fullInformation = ``;
         fullName.addEventListener('keyup', () => {
             createQR();
@@ -49,7 +50,7 @@
         phoneNumber.addEventListener('keyup', () => {
             createQR();
         })
-        department.addEventListener('keyup', () => {
+        position.addEventListener('keyup', () => {
             createQR();
         })
 
@@ -57,14 +58,14 @@
             fullInformation = `
             Full Name: ${fullName.value}
             Phone Number: ${phoneNumber.value}
-            Department: ${department.value}
+            Department: ${position.value}
             `;
             document.getElementById('qrbox')?.remove();
             let qrbox = document.createElement('div');
             qrbox.id = 'qrbox';
             QRCodeBody.append(qrbox);
 
-            new QRCode(qrbox, {
+            let qrcode = new QRCode(qrbox, {
                 text: fullInformation,
                 width: 200,
                 height: 200,
@@ -72,6 +73,13 @@
                 colorLight: '#ffffff',
                 correctLevel: QRCode.CorrectLevel.H,
             });
+
+            if (fullName.value.trim() === '' && phoneNumber.value.trim() === '' && position.value.trim() === '') {
+                qrdownbtn.removeAttribute('href');
+                qrdownbtn.removeAttribute('download');
+                qrdownbtn.classList.remove('d-block');
+                qrcode.clear();
+            }
         }
     </script>
 </body>

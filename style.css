@@ -64,9 +64,9 @@ html, body {
     margin-bottom: 15px;
 }
 
-.qr-inputgroup input {
+.qr-inputgroup textarea {
     width: 100%;
-    height: 35px;
+    height: 70;
     font-family: 'Saira', sans-serif;
     border: none;
     border-radius: 5px;
